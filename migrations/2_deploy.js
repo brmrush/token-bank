@@ -1,5 +1,5 @@
 const RushToken = artifacts.require("RushToken");
-const RushBank = artifacts.require("RushBank");
+const RushStake = artifacts.require("RushStake");
 
 module.exports = async function(deployer) {
 	//deploy Token
@@ -9,11 +9,11 @@ module.exports = async function(deployer) {
 	const rushToken = await RushToken.deployed()
 	
 	//pass token address for dBank contract(for future minting)
-	await deployer.deploy(RushBank, rushToken.address)
+	await deployer.deploy(RushStake, rushToken.address)
 
 	//assign dBank contract into variable to get it's address
-	const rushBank = await RushBank.deployed()
+	const rushStake = await RushStake.deployed()
 
 	//change token's owner/minter from deployer to dBank
-	await rushToken.passMinterRole(rushBank.address)
+	await rushToken.transferMinterRole(rushStake.address)
 };

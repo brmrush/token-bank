@@ -23,7 +23,7 @@ class Navbar extends Component {
               </a>
                 {this.props.account ?
                 <div className='d-md-flex align-items-center justify-content-center text-center'>
-                  <p className='m-1 fw-bold text-oswald text-danger'>{this.props.rushTokenBalance}<span className='text-danger'> $RST</span></p>
+                  <p className='m-1 fw-bold text-oswald text-danger'>{this.props.rushTokenBalance ? this.props.rushTokenBalance : 0}<span className='text-danger'> $RST</span></p>
                   <Identicon className="m-1 d-none d-md-block" string={this.props.account} size={25}></Identicon>
                   <button className='btn btn-sm m-1  btn-primary' onClick={this.handleDisconnectClick}>DISCONNECT</button>
                 </div>
